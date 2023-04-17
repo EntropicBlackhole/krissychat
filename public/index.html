@@ -1,435 +1,466 @@
 <!DOCTYPE html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Krissy Chat</title>
-	<style>
-		body {
-			background-image: url('assets/background.png');
-			background-repeat: no-repeat;
-			background-attachment: fixed;
-			background-position: 0%;
-			background-size: auto;
-			background-size: 100% 120%;
-		}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krissy Chat</title>
+    <style>
+        body {
+            background-image: url('assets/background.png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: auto;
+            background-size: 100% 120%;
 
-		@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        }
 
-		* {
-			box-sizing: border-box;
-			font-family: 'Roboto', sans-serif;
-		}
+@import url('https://fonts.googleapis.com/css2?family=Rondo&display=swap');
 
-		/* Styling the main container */
-		.container {
-			width: 100%;
-			margin: auto;
-			margin-top: 2rem;
-			letter-spacing: 0.5px;
-			height: 100%;
-		}
+        * {
+            box-sizing: border-box;
+            font-family: 'Ronfo', sans-serif;
+        }
 
-		img {
-			width: 50px;
-			vertical-align: middle;
-			border-style: none;
-			border-radius: 100%;
-		}
+        /* Styling the main container */
+        .container {
+            width: 100%;
+            margin: auto;
+            letter-spacing: 0.5px;
+            height: 100%;
+        }
 
-		/* Styling the msg-header container */
-		.msg-header {
-			border: 1px solid #ccc;
-			width: 100%;
-			height: 100%;
-			border-bottom: none;
-			display: inline-block;
-			background-color: #efefef;
-			margin: 0;
-			border-top-left-radius: 20px;
-			border-top-right-radius: 20px;
-		}
+        img {
+            vertical-align: middle;
+            border-style: none;
+            border-radius: 100%;
+        }
 
-		/* Styling the profile picture */
-		.msgimg {
-			margin-left: 2%;
-			float: left;
-		}
+        /* Styling the msg-header container */
+        .msg-header {
+            border: 1px solid #ccc;
+            width: 100%;
+            height: 100%;
+            border-bottom: none;
+            display: inline-block;
+            background-color: #d6efef;
+            margin: 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
 
-		.container1 {
-			width: 270px;
-			height: auto;
-			float: left;
-			margin: 0;
-		}
+        /* Styling the profile picture */
+        .msgimg {
+            margin-left: 2%;
+            margin-top: 2%;
+            margin-right: 4%;
+            margin-bottom: 2%;
+            float: left;
+        }
 
-		/* styling user-name */
-		.active {
-			width: 150px;
-			float: left;
-			color: black;
-			font-weight: bold;
-			margin: 0 0 0 5px;
-			height: 10%;
+        .container1 {
+            width: 270px;
+            height: auto;
+            float: left;
+            margin: 0;
+        }
 
-		}
+        /* styling user-name */
+        .active {
+            width: 700px;
+            color: black;
+            font-weight: bold;
+            font-size: 3rem;
+            margin: 0 0 0 5px;
+            height: 10%;
 
-		/* Styling the inbox */
-		.chat-page {
-			padding: 0 0 50px 0;
-		}
+        }
 
-		.msg-inbox {
-			border: 1px solid #ccc;
-			overflow: hidden;
-			border-bottom-left-radius: 20px;
-			border-bottom-right-radius: 20px;
-		}
+        /* Styling the inbox */
+        .chat-page {
+            padding: 0 0 50px 0;
+        }
+
+        .msg-inbox {
+            border: 1px solid #ccc;
+            overflow: hidden;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
 
 
-		.chats {
-			padding: 30px 15px 0 25px;
-		}
+        .chats {
+            padding: 30px 15px 0 25px;
+        }
 
-		.msg-page {
-			max-height: 500px;
-			overflow-y: auto;
-		}
+        .msg-page {
+            max-height: 500px;
+            overflow-y: auto;
+        }
 
-		/* Styling the msg-bottom container */
-		.msg-bottom {
-			border-top: 1px solid #ccc;
-			position: relative;
-			height: 11%;
-			background-color: rgb(239 239 239);
-		}
+        /* Styling the msg-bottom container */
+        .msg-bottom {
+            border-top: 1px solid #ccc;
+            position: relative;
+            height: 11%;
+            background-color: rgb(239 239 239);
+            vertical-align: left;
+        }
 
-		/* Styling the input field */
-		.input-group {
-			float: right;
-			margin-top: 13px;
-			margin-right: 20px;
-			outline: none !important;
-			border-radius: 20px;
-			width: 61% !important;
-			background-color: #fff;
-			position: relative;
-			display: flex;
-			flex-wrap: wrap;
-			align-items: stretch;
-		}
+        /* Styling the input field */
+        .input-group {
+            float: right;
+            margin-top: 13px;
+            margin-right: 20px;
+            outline: none !important;
+            border-radius: 20px;
+            width: 96% !important;
+            background-color: #fff;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+        }
 
-		.input-group>.form-control {
-			position: relative;
-			flex: 1 1 auto;
-			width: 1%;
-			margin-bottom: 0;
-		}
+        .input-group>.form-control {
+            position: relative;
+            flex: 1 1 auto;
+            width: 1%;
+            margin-bottom: 0;
+        }
 
-		.form-control {
-			border: none !important;
-			border-radius: 20px !important;
-			display: block;
-			height: calc(2.25rem + 2px);
-			padding: 0.375rem 0.75rem;
-			font-size: 1rem;
-			line-height: 1.5;
-			color: #495057;
-			background-color: #fff;
-			background-clip: padding-box;
-			transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-		}
+        .form-control {
+            border: none !important;
+            border-radius: 20px !important;
+            display: block;
+            height: 2.25rem
+            padding: 0.375rem 0.75rem;
+            font-size: 1.5rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
 
-		.input-group-text {
-			background: transparent !important;
-			border: none !important;
-			display: flex;
-			align-items: center;
-			padding: 0.375rem 0.75rem;
-			margin-bottom: 0;
-			font-size: 1.5rem;
-			font-weight: b;
-			line-height: 1.5;
-			color: #495057;
-			text-align: center;
-			white-space: nowrap;
-			background-color: #e9ecef;
-			border: 1px solid #ced4da;
-			border-radius: 0.25rem;
-			font-weight: bold !important;
-			cursor: pointer;
-		}
+        .input-group-text {
+            background: transparent !important;
+            border: none !important;
+            display: flex;
+            align-items: center;
+            padding: 0.375rem 0.75rem;
+            margin-bottom: 0;
+            font-size: 2rem;
+            font-weight: b;
+            line-height: 1.5;
+            color: #495057;
+            text-align: center;
+            white-space: nowrap;
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            font-weight: bold !important;
+            cursor: pointer;
+        }
 
-		input:focus {
-			outline: none;
-			border: none !important;
-			box-shadow: none !important;
-		}
+        input:focus {
+            outline: none;
+            border: none !important;
+            box-shadow: none !important;
+        }
 
-		.send-icon {
-			font-weight: bold !important;
-		}
+        .send-icon {
+            font-weight: bold !important;
+            font-size: 1.5rem;
+            background-color: transparent;
+            width: 10%;
+        }
+        /* Styling the avatar  */
+        received-chats-img {
 
-		/* Styling the avatar  */
-		received-chats-img {
-			display: inline-block;
-			width: 50px;
-			float: left;
-		}
+            width: 20px;
+            float: right;
+        }
 
-		.received-msg {
-			display: inline-block;
-			padding: 0 0 0 10px;
-			vertical-align: top;
-			width: 92%;
-		}
+        .received-msg {
+            display: inline-block;
+            padding: 0 0 0 10px;
+            vertical-align: top;
+            width: 92%;
+        }
 
-		.received-msg-inbox {
-			width: 57%;
-		}
+        .received-msg-inbox {
+            width: 57%;
+        }
 
-		.received-msg-inbox p {
-			background: #efefef none repeat scroll 0 0;
-			border-radius: 10px;
-			color: #646464;
-			font-size: 14px;
-			margin-left: 1rem;
-			padding: 1rem;
-			width: 100%;
-			box-shadow: rgb(0 0 0 / 25%) 0px 5px 5px 2px;
-		}
+        .received-msg-inbox p {
+            background: #afefef none repeat scroll 0 0;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 14px;
+            margin-left: 1rem;
+            padding: 1rem;
+            width: 100%;
+            box-shadow: rgb(0 0 0 / 25%) 0px 5px 5px 2px;
+            background-color: #da12ff;
+            background-image: linear-gradient(45deg, #ee087f 0%, #DD2A7B 25%, #9858ac 50%, #8134AF 75%, #515BD4 100%);
+            border-radius: 10px;
+            font-size: 14px;
+            box-shadow: rgb(0 0 0 / 25%) 0px 2px 5px 2px
+        }
 
-		p {
-			overflow-wrap: break-word;
-		}
+        p {
+            overflow-wrap: break-word;
+        }
 
-		/* Styling the msg-sent time  */
-		.time {
-			color: #777;
-			display: block;
-			font-size: 12px;
-			margin: 8px 0 0;
-		}
+        /* Styling the msg-sent time  */
+        .time {
+            color: #777;
+            display: block;
+            font-size: 12px;
+            margin: 8px 0 0;
+            margin-top: 1rem;
+        }
 
-		.outgoing-chats {
-			overflow: hidden;
-			margin: 26px 20px;
-		}
+        .outgoing-chats {
+            overflow: hidden;
+            margin: 26px 20px;
+        }
 
-		.outgoing-chats-msg p {
-			background-color: #3a12ff;
-			background-image: linear-gradient(45deg, #ee087f 0%, #DD2A7B 25%, #9858ac 50%, #8134AF 75%, #515BD4 100%);
-			color: #fff;
-			border-radius: 10px;
-			font-size: 14px;
-			color: #fff;
-			padding: 5px 10px 5px 12px;
-			width: 100%;
-			padding: 1rem;
-			box-shadow: rgb(0 0 0 / 25%) 0px 2px 5px 2px;
-		}
+        .outgoing-chats-msg p {
+            background-color: #3a12ff;
+            background-image: linear-gradient(45deg, #ee087f 0%, #DD2A7B 25%, #9858ac 50%, #8134AF 75%, #515BD4 100%);
+            color: #fff;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #fff;
+            padding: 5px 10px 5px 12px;
+            width: 100%;
+            padding: 1rem;
+            box-shadow: rgb(0 0 0 / 25%) 0px 2px 5px 2px;
+        }
 
-		.outgoing-chats-msg {
-			float: right;
-			width: 46%;
-		}
+        .outgoing-chats-msg {
+            float: right;
+            width: 46%;
+        }
 
-		/* Styling the avatar */
-		.outgoing-chats-img {
-			display: inline-block;
-			width: 50px;
-			float: right;
-			margin-right: 1rem;
-		}
+        /* Styling the avatar */
+        .outgoing-chats-img {
+            display: inline-block;
+            width: 50px;
+            float: right;
+            margin-right: 1rem;
+            margin-top: 1.5rem;
+        }
 
-		@media only screen and (max-device-width: 850px) {
+@media only screen and (max-device-width: 850px) {
 
-			*,
-			.time {
-				font-size: 28px;
-			}
+            *,
+            .time {
+                font-size: 28px;
+            }
 
-			img {
-				width: 65px;
-			}
+            img {
+                width: 65px;
+            }
 
-			.msg-header {
-				height: 5%;
-			}
+            .msg-header {
+                height: 5%;
+            }
 
-			.msg-page {
-				max-height: none;
-			}
+            .msg-page {
+                max-height: none;
+            }
 
-			.received-msg-inbox p {
-				font-size: 28px;
-			}
+            .received-msg-inbox p {
+                font-size: 28px;
+            }
 
-			.outgoing-chats-msg p {
-				font-size: 28px;
-			}
-		}
+            .outgoing-chats-msg p {
+                font-size: 28px;
+            }
+        }
 
-		@media only screen and (max-device-width: 450px) {
+@media only screen and (max-device-width: 450px) {
 
-			*,
-			.time {
-				font-size: 28px;
-			}
+            *,
+            .time {
+                font-size: 28px;
+            }
 
-			img {
-				width: 65px;
-			}
+            img {
+                width: 65px;
+            }
 
-			.msg-header {
-				height: 5%;
-			}
+            .msg-header {
+                height: 5%;
+            }
 
-			.msg-page {
-				max-height: none;
-			}
+            .msg-page {
+                max-height: none;
+            }
 
-			.received-msg-inbox p {
-				font-size: 28px;
-			}
+            .received-msg-inbox p {
+                font-size: 28px;
+            }
 
-			.outgoing-chats-msg p {
-				font-size: 28px;
-			}
-		}
-	</style>
-	<script type="module">
-		// Import the functions you need from the SDKs you need
-		import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-		// TODO: Add SDKs for Firebase products that you want to use
-		// https://firebase.google.com/docs/web/setup#available-libraries
+            .outgoing-chats-msg p {
+                font-size: 28px;
+            }
+        }
+    </style>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
 
-		// Your web app's Firebase configuration
-		const firebaseConfig = {
-			apiKey: "AIzaSyANeMiYhq5rs4Z7KE9kFxX3P4DQ6qiwC7I",
-			authDomain: "krissychat.firebaseapp.com",
-			projectId: "krissychat",
-			storageBucket: "krissychat.appspot.com",
-			messagingSenderId: "211574988751",
-			appId: "1:211574988751:web:0315f4ad5f7f960a48bcba"
-		};
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyANeMiYhq5rs4Z7KE9kFxX3P4DQ6qiwC7I",
+            authDomain: "krissychat.firebaseapp.com",
+            projectId: "krissychat",
+            storageBucket: "krissychat.appspot.com",
+            messagingSenderId: "211574988751",
+            appId: "1:211574988751:web:0315f4ad5f7f960a48bcba"
+        };
 
-		// Initialize Firebase
-		const app = initializeApp(firebaseConfig);
-	</script>
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+    </script>
+    <script type="text/javascript" src="discord.11.1.0.min.js"></script>
+    <script>
+    document.getElementById("debug").innerHtml = "beep"
+        const client = new Discord.Client();
+
+        client.on('message', msg => {
+            if (msg.content == '$ping') msg.reply("pong")
+        });
+
+        client.login('OTk5MDY2MzQ3MjEwMjg1MDU2.Gpavqr.MCQD6n379SL3h8WyGYkxNoYYzR9MMWDsHi49QU')
+    </script>
 </head>
 
 <body>
-	<!-- Main container -->
-	<div class="container">
+    <!-- Main container -->
+    <div class="container">
 
-		<!-- msg-header section starts -->
-		<div class="msg-header">
-			<div class="container1">
+        <!-- msg-header section starts -->
+        <div class="msg-header">
+            <div class="container1">
 
-				<img src="/assets/krissypfp.png" class="msgimg">
-				<div class="active ">
-					<p>User name</p>
-				</div>
+                <img src="/assets/krissypfp.png" class="msgimg">
+                <div class="active ">
+                    <p>
+                        EntropicBlackhole
+                    </p>
+                </div>
 
-			</div>
-
-
-		</div>
-		<!-- msg-header section ends -->
-
-		<!-- Chat inbox  -->
-		<div class="chat-page">
-			<div class="msg-inbox">
-				<div class="chats">
-
-					<!-- Message container -->
-					<div class="msg-page">
-
-						<!-- Incoming messages -->
-
-						<div class="received-chats">
-							<div class="received-chats-img">
-								<img src="user2.png">
-
-							</div>
-							<div class="received-msg">
-								<div class="received-msg-inbox">
-									<p>Hi !! This is message from Riya . Lorem ipsum, dolor sit amet consectetur
-										adipisicing elit. Non quas nemo eum, earum sunt, nobis similique quisquam
-										eveniet pariatur commodi modi voluptatibus iusto omnis harum illum
-										iste distinctio expedita illo!</p>
-									<span class="time">18:06 PM | July 24 </span>
-								</div>
-							</div>
-						</div>
-						<!-- Outgoing messages -->
-						<div class="outgoing-chats">
-							<div class="outgoing-chats-img">
-								<img src="user1.png">
-
-							</div>
-							<div class="outgoing-msg">
-								<div class="outgoing-chats-msg">
-									<p class="multi-msg">Hi riya , Lorem ipsum dolor sit amet consectetur adipisicing
-										elit. Illo nobis deleniti earum magni recusandae assumenda.
-									</p>
-									<p class="multi-msg">Lorem ipsum dolor sit amet consectetur.</p>
+            </div>
 
 
-									<span class="time">18:30 PM | July 24 </span>
-								</div>
-							</div>
-						</div>
-						<div class="received-chats">
-							<div class="received-chats-img">
-								<img src="user2.png">
+        </div>
+        <!-- msg-header section ends -->
 
-							</div>
-							<div class="received-msg">
-								<div class="received-msg-inbox">
-									<p class="single-msg">Hi !! This is message from John Lewis. Lorem ipsum, dolor sit
-										amet consectetur adipisicing elit. iste distinctio expedita illo!</p>
-									<span class="time">18:31 PM | July 24 </span>
-								</div>
-							</div>
-						</div>
-						<div class="outgoing-chats">
-							<div class="outgoing-chats-img">
-								<img src="user1.png">
+        <!-- Chat inbox  -->
+        <div class="chat-page">
+            <div class="msg-inbox">
+                <div class="chats">
 
-							</div>
-							<div class="outgoing-msg">
-								<div class="outgoing-chats-msg">
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, sequi.</p>
+                    <!-- Message container -->
+                    <div class="msg-page">
 
-									<span class="time">18:34 PM | July 24 </span>
-								</div>
-							</div>
-						</div>
+                        <!-- Incoming messages -->
+
+                        <div class="received-chats">
+                            <div class="received-msg">
+                                <div class="received-msg-inbox">
+                                    <div class="received-chats-img">
+                                        <img src="assets/krissypfp.png">
+                                    </div>
+                                    <p>
+                                        Hi !! This is message from Riya . Lorem ipsum, dolor sit amet consectetur
+                                        adipisicing elit. Non quas nemo eum, earum sunt, nobis similique quisquam
+                                        eveniet pariatur commodi modi voluptatibus iusto omnis harum illum
+                                        iste distinctio expedita illo!
+                                    </p>
+                                    <span class="time">18:06 PM | July 24 </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Outgoing messages -->
+                        <div class="outgoing-chats">
+
+                            <div class="outgoing-msg">
+                                <div class="outgoing-chats-msg">
+                                    <div class="outgoing-chats-img">
+                                        <img src="assets/krissypfp.png">
+                                    </div>
+                                    <p class="multi-msg">
+                                        Hi riya , Lorem ipsum dolor sit amet consectetur adipisicing
+                                        elit. Illo nobis deleniti earum magni recusandae assumenda.
+                                    </p>
+                                    <p class="multi-msg">
+                                        Lorem ipsum dolor sit amet consectetur.
+                                    </p>
+                                    <span class="time">18:30 PM | July 24 </span>
 
 
 
-					</div>
-				</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="received-chats">
 
-				<!-- msg-bottom section -->
+                            <div class="received-msg">
+                                <div class="received-msg-inbox">
+                                    <div class="received-chats-img">
+                                        <img src="assets/krissypfp.png">
+                                    </div>
+                                    <p class="single-msg">
+                                        Hi !! This is message from John Lewis. Lorem ipsum, dolor sit
+                                        amet consectetur adipisicing elit. iste distinctio expedita illo!
+                                    </p>
+                                    <span class="time">18:31 PM | July 24 </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="outgoing-chats">
+
+                            <div class="outgoing-msg">
+                                <div class="outgoing-chats-msg">
+                                    <div class="outgoing-chats-img">
+                                        <img src="assets/krissypfp.png">
+                                    </div>
+                                    <p id="debug">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, sequi.
+                                    </p>
+                                    <span class="time">18:30 PM | July 24 </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- msg-bottom section -->
 
 
-				<div class="msg-bottom">
+                <div class="msg-bottom">
 
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Write message...">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="input" placeholder="Write a message..">
+                        <button class="send-icon" id="send-button">></button>
+                    </span>
 
-						<span class="input-group-text send-icon "><i class="bi bi-send "></i>
-						</span>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 
