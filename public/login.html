@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Register - My Chat-Based Website</title>
+	<title>Login - My Chat-Based Website</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
@@ -39,7 +39,7 @@
 			color: #fff;
 			text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 		}
-		input[type="text"], input[type="email"], input[type="password"] {
+		input[type="email"], input[type="password"] {
 			width: 100%;
 			padding: 15px;
 			margin-bottom: 20px;
@@ -80,17 +80,12 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Register for My Chat-Based Website</h1>
+		<h1>Login to My Chat-Based Website</h1>
 		<form action="" method="post">
-			<label for="username">Username:</label>
-			<input type="text" id="username" name="username" required>
 			<label for="email">Email:</label>
 			<input type="email" id="email" name="email" required>
 			<label for="password">Password:</label>
 			<input type="password" id="password" name="password" required>
-			<label for="confirm_password">Confirm Password:</label>
-			<input type="password" id="confirm-password" name="confirm-password" required>
+			<button type="submit">Log In</button>
 		</form>
-		<p>Looking to login? <a href="login.html">Click here to login</a></p>
-	</div>
-</body>
+		<p>Not registered yet? <a href="register.html">Click here to register</a></p

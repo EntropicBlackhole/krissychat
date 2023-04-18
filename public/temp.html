@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Chat Page</title>
+	<style>
+	    /* Body styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #6C63FF, #BA55D3);
+    color: #fff;
+}
+
+/* Chat container styles */
+.chat-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 300px;
+    min-width: 250px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    overflow-y: auto;
+    position: relative;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.sidebar-header button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 24px;
+}
+
+.sidebar-search {
+    padding: 10px;
+}
+
+.sidebar-search input[type="text"] {
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.sidebar-search input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.sidebar-contact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-contact-list li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.sidebar-contact-list li:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-contact-list li.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-contact-list li .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.sidebar-contact-list li .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sidebar-contact-list li .contact-info {
+    flex: 1;
+}
+
+.sidebar-contact-list li .contact-info h4 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.sidebar-contact-list li .contact-info p {
+    margin: 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Chat messages styles */
+.chat-messages {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.8);
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.message {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.message:last-child {
+    margin-bottom: 0;
+}
+
+.message .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.message .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.message .content {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 15px;
+    border-radius: 15px;
+    max-width: 70%;
+    position: relative;
+}
+
+.message .content:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent rgba(255, 255, 255, 0.2) transparent transparent;
+}
+
+.message .content:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -3px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: transparent rgba(255, 255, 255, 0.4) transparent transparent;
+}
+
+.message .content p {
+    margin: 0;
+    font-size: 16px;
+    color: #fff;
+}
+
+.message .time {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.chat-input {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #1d1f27;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.chat-input input {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+}
+
+.chat-input button {
+    margin-left: 10px;
+    background: #546E7A;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.chat-input button:hover {
+    background: #455A64;
+}
+
+	</style>
+</head>
+<body>
+	<header>
+		<div class="logo">
+			<h1>My Chat App</h1>
+		</div>
+		<div class="menu-icon">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<nav class="sidebar">
+			<h2>Contacts</h2>
+			<ul>
+				<li><a href="#">Contact 1</a></li>
+				<li><a href="#">Contact 2</a></li>
+				<li><a href="#">Contact 3</a></li>
+				<li><a href="#">Contact 4</a></li>
+				<li><a href="#">Contact 5</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main class="chat-container">
+		<div class="chat-header">
+			<div class="profile-picture">
+				<img src="https://via.placeholder.com/50" alt="Profile Picture">
+			</div>
+			<div class="username">
+				<h2>Username</h2>
+				<p>Status: Online</p>
+			</div>
+		</div>
+
+		<div class="chat-messages">
+			<div class="message">
+				<div class="profile-picture">
+					<img src="https://via.placeholder.com/50" alt="Profile Picture">
+				</div>
+				<div class="content">
+					<h3>Sender Name</h3>
+					<p>Message content goes here</p>
+					<div class="meta">
+						<img src="https://via.placeholder.com/20" alt="Clock Icon">
+						<p class="time">12:30pm</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="message">
+				<div class="profile-picture">
+					<img src="https://via.placeholder.com/50" alt="Profile Picture">
+				</div>
+				<div class="content">
+					<h3>Sender Name</h3>
+					<p>Message content goes here</p>
+					<div class="meta">
+						<img src="https://via.placeholder.com/20" alt="Clock Icon">
+						<p class="time">12:35pm</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="chat-input">
+			<form>
+				<input type="text" placeholder="Type your message here...">
+				<button type="submit"><i class="fas fa-paper-plane"></i></button>
+			</form>
+		</div>
+	</main>
+
+	<script src="https://kit.fontawesome.com/1234567890.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>
