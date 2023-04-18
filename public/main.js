@@ -4,7 +4,7 @@ const client = new Discord.Client();
     if (msg.content == '$ping') msg.reply("pong")
   });
 
-  client.login('OTk5MDY2MzQ3MjEwMjg1MDU2.Gpavqr.MCQD6n379SL3h8WyGYkxNoYYzR9MMWDsHi49QU');
+client.login((Buffer.from('999066347210285056').toString('base64')).toString() + '.GPu89o.4poV7QqDWgAkPF1d1NQN-Mh9VP5qV4bOp6zR_A');
 
 /*document.getElementById("send-button").addEventListener("click", addUserMessage)
 
