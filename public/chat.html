@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>My Chat-Based Website</title>
+    <title>CatShake - No we don't make cats into shakes</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,14 +14,15 @@
             background: linear-gradient(to bottom right, #5374b8, #764fa5);
             color: #fff;
         }
+
         .container {
-            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: stretch;
         }
+
         .sidebar {
             flex: 1;
             padding: 20px;
@@ -28,17 +31,20 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             margin-right: 20px;
         }
+
         .sidebar h2 {
             font-size: 32px;
             margin-bottom: 20px;
             color: #fff;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
+
         .contacts {
             list-style: none;
             padding: 0;
             margin: 0;
         }
+
         .contacts li {
             display: flex;
             align-items: center;
@@ -46,9 +52,11 @@
             border-bottom: 1px solid #fff;
             cursor: pointer;
         }
+
         .contacts li:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
+
         .contacts li img {
             width: 50px;
             height: 50px;
@@ -56,48 +64,67 @@
             border-radius: 50%;
             margin-right: 10px;
         }
+
         .contacts li h3 {
             font-size: 24px;
             margin: 0;
             color: #fff;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
+
         .main {
             flex: 3;
             padding: 20px;
+            /* height: 1000px; */
             background-color: rgba(0, 0, 0, 0.6);
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            margin-left: 20px;
         }
+
+        .message-list {
+            margin-top: 15px
+        }
+
         .message {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
+
         .message img {
-            width: 30px;
-            height: 30px;
+            width: 45px;
+            height: 45px;
             object-fit: cover;
             border-radius: 50%;
             margin-right: 10px;
         }
+
         .message p {
             margin: 5px 0;
             font-size: 18px;
             color: #fff;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
+
         .message .time {
-            font-size: 14px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.8);
         }
+
         .message-box {
+            transform: translateY(0);
             display: flex;
             align-items: center;
             margin-top: 20px;
+            background-color: black;
+            padding: 20px;
+            border-radius: 10px;
+            position: -webkit-sticky;
+            position: sticky;
+            bottom: 0;
         }
+
         .message-box input[type="text"] {
             flex: 1;
             padding: 10px;
@@ -108,6 +135,7 @@
             color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
+
         .message-box button {
             padding: 10px;
             border: none;
@@ -118,143 +146,250 @@
             cursor: pointer;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
+
         .message-box button i {
-            font-size: 24px;
+            font-size: 20px;
         }
-@media (max-width: 767px) {
+
+        .menu {
+            padding: 10px;
+            background-color: rgba(28, 14, 90, 0.6);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+        }
+
+        .user-row {
+            display: flex;
+            align-items: center;
+            padding-top: 10px
+        }
+
+        @media (max-width: 10000px) {
             .container {
                 flex-direction: column;
             }
+
             .sidebar {
                 margin-right: 0;
+                margin-left: 10;
                 margin-bottom: 20px;
             }
+
             .main {
                 margin-left: 0;
             }
-        }
-        .sidenav {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #111;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-        }
-        .sidenav a {
-            padding: 8px 8px 8px 32px;
-            text-decoration: none;
-            font-size: 25px;
-            color: #818181;
-            
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #111;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-        }
-        .sidenav a {
-            padding: 8px 8px 8px 32px;
-            text-decoration: none;
-            font-size: 25px;
-            color: #818181;
-            display: block;
-            transition: 0.3s;
-        }
-        display: block;
-        transition: 0.3s;
-    }
 
-    .sidenav a:hover {
-        color: #f1f1f1;
-    }
-    .sidenav .closebtn {
-        position: absolute;
-        top: 0;
-        right: 25px;
-        font-size: 36px;
-        margin-left: 50px;
-    }
-    .menu {
-        padding-left: 10px;
-    }
+            .sidenav {
+                height: 100%;
+                width: 0;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                background-color: rgba(0, 0, 0, 0.6);
+                overflow-x: hidden;
+                transition: 0.5s;
+                padding-top: 60px;
+            }
 
-@media screen and (max-height: 450px) {
-        .sidenav {
-            padding-top: 15px;
+            .sidenav a {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                width: 0;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                transition: 0.5s;
+                padding-top: 60px;
+            }
+
+            .sidenav a {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                display: block;
+                transition: 0.3s;
+            }
         }
-        .sidenav a {
-            font-size: 18px;
+
+        .sidenav a:hover {
+            color: #f1f1f1;
         }
-    }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 35px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .sidenav-title {
+            position: absolute;
+            top: 0;
+            margin: 0;
+            margin-top: 20px;
+        }
+
+        .sidenav .sidenav-top {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding-left: 10px;
+            /* right: 25px; */
+            font-size: 20px;
+            /* margin-left: 50px; */
+        }
+
+        .contact {
+            margin-left: 10px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
     </style>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+
+        function gotoUserPage(user) {
+            return console.log(user)
+        }
+        function sendMessage() {
+            let message = document.getElementById('chatbox').innerHTML;
+            document.getElementById('chatbox').innerHTML = "";
+            let pfp = 'https://picsum.photos/id/1027/200/200';
+            let name = 'Whiskers';
+            let timeDate = new Date('hh:mm a - mm/dd/yy')
+            const messageList = document.getElementById("message-list");
+
+            let messageBox = document.createElement('div');
+            let userRow = document.createElement("div");
+            userRow.classList.add('user-row')
+            let userPFP = document.createElement('img');
+            userPFP.src = pfp;
+            userPFP.alt = ':3';
+            let nameTime = document.createElement('div');
+            nameTime.classList.add('name-time');
+            let username = document.createElement('p');
+            username.innerHTML = name
+            let time = document.createElement('p');
+            time.classList.add('time');
+            time.innerHTML = timeDate;
+            nameTime.appendChild(username);
+            nameTime.appendChild(time);
+            userRow.appendChild(userPFP);
+            userRow.appendChild(nameTime);
+            let actualMessage = document.createElement('p');
+            actualMessage.innerHTML = message;
+            messageBox.appendChild(userRow);
+            messageBox.appendChild(actualMessage);
+            messageList.appendChild(messageBox);
+        }
+    </script>
 </head>
+
 <body>
     <div class="container">
         <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <h2>Contacts</h2>
+            <div class="sidenav-top">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <h2 class="sidenav-title">All my frens</h2>
+            </div>
             <ul class="contacts">
-<li>
-<img src="https://picsum.photos/id/1025/200/200" alt="Profile Picture">
-<h3>User 1</h3>
-</li>
-<li>
-<img src="https://picsum.photos/id/1027/200/200" alt="Profile Picture">
-<h3>User 2</h3>
-</li>
-<li>
-<img src="https://picsum.photos/id/1029/200/200" alt="Profile Picture">
-<h3>User 3</h3>
-</li>
-</ul>
-</div>
-<span style="font-size:30px;cursor:pointer" onclick="openNav()" class="menu">&#9776; Contact List</span>
-
-<script>
-function openNav() {
-document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-document.getElementById("mySidenav").style.width = "0";
-}
-</script>
-<div class="main">
-<div class="message">
-<img src="https://picsum.photos/id/1025/30/30" alt="Profile Picture">
-<p>
-Hello!
-</p>
-<span class="time">10:00 AM</span>
-</div>
-<div class="message">
-<img src="https://picsum.photos/id/1029/30/30" alt="Profile Picture">
-<p>
-How are you?
-</p>
-<span class="time">10:05 AM</span>
-</div>
-<div class="message">
-<img src="https://picsum.photos/id/1030/30/30" alt="Profile Picture">
-<p>
-I'm fine, thanks.
-</p>
-<span class="time">10:10 AM</span>
-</div>
-<div class="message-box">
-<input type="text" placeholder="Type your message here...">
-<button><i class="fa fa-paper-plane">></i></button>
-</div>
-</div>
-</div>
+                <li onClick="gotoUserPage('Whiskers')" class="contact">
+                    <img src="https://picsum.photos/id/1025/200/200" alt="Profile Picture">
+                    <h3>Whiskers</h3>
+                </li>
+                <li onClick="gotoUserPage('Patches')" class="contact">
+                    <img src="https://picsum.photos/id/1027/200/200" alt="Profile Picture">
+                    <h3>Patches</h3>
+                </li>
+                <li onClick="gotoUserPage('Match')" class="contact">
+                    <img src="https://picsum.photos/id/1029/200/200" alt="Profile Picture">
+                    <h3>Match</h3>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="menu">&#9776; Kitten frens</span>
+            <div class="message-list" id="message-list">
+                <div class="message">
+                    <div class="user-row">
+                        <img src="https://picsum.photos/id/1025/30/30" alt=":3">
+                        <div class="name-time">
+                            <p>Whiskers</p>
+                            <p class="time">10:10 AM - 16/07/25</p>
+                        </div>
+                    </div>
+                    <p>Hello!</p>
+                </div>
+                <div class="message">
+                    <div class="user-row">
+                        <img src="https://picsum.photos/id/1029/30/30" alt=":3">
+                        <div class="name-time">
+                            <p>Match</p>
+                            <p class="time">10:10 AM - 16/07/25</p>
+                        </div>
+                    </div>
+                    <p>How are you?</p>
+                </div>
+                <div class="message">
+                    <div class='user-row'>
+                        <img src="https://picsum.photos/id/1027/200/200" alt=":3">
+                        <div class="name-time">
+                            <p>Patches</p>
+                            <p class="time">10:10 AM - 16/07/25</p>
+                        </div>
+                    </div>
+                    <p>I'm fine, thanks.</p>
+                    <p>You guys?</p>
+                </div>
+                <div class="message">
+                    <div class="user-row">
+                        <img src="https://picsum.photos/id/1029/30/30" alt=":3">
+                        <div class="name-time">
+                            <p>Match</p>
+                            <p class="time">10:11 AM - 16/07/25</p>
+                        </div>
+                    </div>
+                    <p>We're good!</p>
+                </div>
+            </div>
+            <div class="message">
+                <div class="user-row">
+                    <img src="https://picsum.photos/id/1025/30/30" alt=":3">
+                    <div class="name-time">
+                        <p>Whiskers</p>
+                        <p class="time">10:10 AM - 16/07/25</p>
+                    </div>
+                </div>
+                <p>Neat!</p>
+            </div>
+            <div class="message-box">
+                <input type="text" id='chatbox' placeholder="No we don't make cats into shakes i swear">
+                <button onclick="sendMessage()"><i class="fa">&#xf1d9</i></button>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
