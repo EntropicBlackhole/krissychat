@@ -43,6 +43,7 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            padding-top: 50px;
         }
 
         .contacts li {
@@ -92,7 +93,7 @@
             margin-bottom: 10px;
         }
 
-        .message img {
+        .user-pfp {
             width: 45px;
             height: 45px;
             object-fit: cover;
@@ -105,6 +106,7 @@
             font-size: 18px;
             color: #fff;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            line-height: 16px;
         }
 
         .message .time {
@@ -123,6 +125,7 @@
             position: -webkit-sticky;
             position: sticky;
             bottom: 0;
+            
         }
 
         .message-box input[type="text"] {
@@ -153,9 +156,9 @@
 
         .menu {
             padding: 10px;
-            background-color: rgba(28, 14, 90, 0.6);
+            background-color: rgba(5, 2, 24, 0.9);
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 1);
             position: -webkit-sticky;
             position: sticky;
             top: 0;
@@ -189,7 +192,7 @@
                 z-index: 1;
                 top: 0;
                 left: 0;
-                background-color: rgba(0, 0, 0, 0.6);
+                background-color: rgba(0, 0, 0, 0.9);
                 overflow-x: hidden;
                 transition: 0.5s;
                 padding-top: 60px;
@@ -250,7 +253,10 @@
         .contact {
             margin-left: 10px;
         }
-
+        .current-contact {
+            margin-left: 10px;
+            background-color: rgb(48, 48, 48);
+        }
         @media screen and (max-height: 450px) {
             .sidenav {
                 padding-top: 15px;
@@ -274,23 +280,23 @@
             return console.log(user)
         }
         function removeStringIndex(str, index, endingPoint = null) {
+            console.log(str)
             if (endingPoint == null) return str.substring(0, index - 1) + str.substring(index, str.length);
             return str.substring(0, index - 1) + str.substring(endingPoint, str.length);
         }
         function sendMessage() {
-            let message = document.getElementById('chatbox').innerHTML;
-            document.getElementById('chatbox').innerHTML = "";
+            let lastMessage = 'user';
+            // let message = "Henlo"
+            let chatBox = document.getElementById('chatbox')
+            let message = chatBox.value;
+            if (message == '') return
+            chatBox.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
             let pfp = 'https://picsum.photos/id/1027/200/200';
             let name = 'Whiskers';
-            let timeDate = removeStringIndex(removeStringIndex(new Date().toLocaleString(), 6, 7), 14, 16)
-            timeDate;
-            // let timeOnly = timeDate[1].split(' ')[0].split(':')
-            // let a = timeDate[1].split(' ')[1];
-            // let date = timeDate[0].split('/');
-
-            // let compiledTime = `${date[0]}/${date[1]}/${date[2].slice()}`;
+            let timeDate = removeStringIndex(removeStringIndex(new Date().toLocaleString(), 6, 7), 15, 17).split(', ')
+            timeDate = timeDate[1] + ' - ' + (timeDate[0].split('/')[0] < 10 ? '0' + timeDate[0] : timeDate[0])
             const messageList = document.getElementById("message-list");
-            //4/19/2023, 7:19:53 PM
             /*
             <div class="message">
                 <div class="user-row">
@@ -305,27 +311,38 @@
             */
             console.log(message)
             let messageBox = document.createElement('div');
-            let userRow = document.createElement("div");
-            userRow.classList.add('user-row')
-            let userPFP = document.createElement('img');
-            userPFP.src = pfp;
-            userPFP.alt = ':3';
-            let nameTime = document.createElement('div');
-            nameTime.classList.add('name-time');
-            let username = document.createElement('p');
-            username.innerHTML = name
-            let time = document.createElement('p');
-            time.classList.add('time');
-            time.innerHTML = timeDate;
-            nameTime.appendChild(username);
-            nameTime.appendChild(time);
-            userRow.appendChild(userPFP);
-            userRow.appendChild(nameTime);
-            let actualMessage = document.createElement('p');
-            actualMessage.innerHTML = message;
-            messageBox.appendChild(userRow);
-            messageBox.appendChild(actualMessage);
-            messageList.appendChild(messageBox);
+            if (lastMessage != 'user') {
+                messageBox.classList.add('message')
+                let userRow = document.createElement("div");
+                userRow.classList.add('user-row')
+                let userPFP = document.createElement('img');
+                userPFP.src = pfp;
+                userPFP.classList.add('user-pfp')
+                userPFP.alt = ':3';
+                let nameTime = document.createElement('div');
+                nameTime.classList.add('name-time');
+                let username = document.createElement('p');
+                username.innerHTML = name
+                let time = document.createElement('p');
+                time.classList.add('time');
+                time.innerHTML = timeDate;
+                nameTime.appendChild(username);
+                nameTime.appendChild(time);
+                userRow.appendChild(userPFP);
+                userRow.appendChild(nameTime);
+                let actualMessage = document.createElement('p');
+                actualMessage.innerHTML = message;
+                messageBox.appendChild(userRow);
+                messageBox.appendChild(actualMessage);
+                messageList.appendChild(messageBox);
+            }
+            else {
+                let messageBox = document.getElementById('101010')
+                let actualMessage = document.createElement('p');
+                actualMessage.innerHTML = message;
+                messageBox.appendChild(actualMessage)
+                messageList.appendChild(messageBox);
+            }
         }
     </script>
 </head>
@@ -338,16 +355,12 @@
                 <h2 class="sidenav-title">All my frens</h2>
             </div>
             <ul class="contacts">
-                <li onClick="gotoUserPage('Whiskers')" class="contact">
-                    <img src="https://picsum.photos/id/1025/200/200" alt="Profile Picture">
+                <li onClick="closeNav()" class="current-contact">
+                    <img src="https://picsum.photos/id/1025/200/200" alt=":3">
                     <h3>Whiskers</h3>
                 </li>
-                <li onClick="gotoUserPage('Patches')" class="contact">
-                    <img src="https://picsum.photos/id/1027/200/200" alt="Profile Picture">
-                    <h3>Patches</h3>
-                </li>
                 <li onClick="gotoUserPage('Match')" class="contact">
-                    <img src="https://picsum.photos/id/1029/200/200" alt="Profile Picture">
+                    <img src="https://picsum.photos/id/1029/200/200" alt=":3">
                     <h3>Match</h3>
                 </li>
             </ul>
@@ -357,58 +370,47 @@
             <div class="message-list" id="message-list">
                 <div class="message">
                     <div class="user-row">
-                        <img src="https://picsum.photos/id/1025/30/30" alt=":3">
+                        <img src="https://picsum.photos/id/1025/30/30" class='user-pfp' alt=":3">
                         <div class="name-time">
                             <p>Whiskers</p>
-                            <p class="time">10:10 AM - 16/07/25</p>
+                            <p class="time">10:10 AM - 07/16/25</p>
                         </div>
                     </div>
                     <p>Hello!</p>
                 </div>
                 <div class="message">
                     <div class="user-row">
-                        <img src="https://picsum.photos/id/1029/30/30" alt=":3">
+                        <img src="https://picsum.photos/id/1027/200/200" class='user-pfp' alt=":3">
                         <div class="name-time">
-                            <p>Match</p>
-                            <p class="time">10:10 AM - 16/07/25</p>
+                            <p>Patches</p>
+                            <p class="time">10:10 AM - 07/16/25</p>
                         </div>
                     </div>
                     <p>How are you?</p>
                 </div>
                 <div class="message">
-                    <div class='user-row'>
-                        <img src="https://picsum.photos/id/1027/200/200" alt=":3">
+                    <div class="user-row">
+                        <img src="https://picsum.photos/id/1025/30/30" class='user-pfp' alt=":3">
+                        <div class="name-time">
+                            <p>Whiskers</p>
+                            <p class="time">10:11 AM - 07/16/25</p>
+                        </div>
+                    </div>
+                    <p>I'm good! You?</p>
+                </div>
+                <div class="message" id="101010">
+                    <div class="user-row">
+                        <img src="https://picsum.photos/id/1027/200/200" class='user-pfp' alt=":3">
                         <div class="name-time">
                             <p>Patches</p>
-                            <p class="time">10:10 AM - 16/07/25</p>
+                            <p class="time">10:10 AM - 07/16/25</p>
                         </div>
                     </div>
-                    <p>I'm fine, thanks.</p>
-                    <p>You guys?</p>
+                    <p>Good too!</p>
                 </div>
-                <div class="message">
-                    <div class="user-row">
-                        <img src="https://picsum.photos/id/1029/30/30" alt=":3">
-                        <div class="name-time">
-                            <p>Match</p>
-                            <p class="time">10:11 AM - 16/07/25</p>
-                        </div>
-                    </div>
-                    <p>We're good!</p>
-                </div>
-            </div>
-            <div class="message">
-                <div class="user-row">
-                    <img src="https://picsum.photos/id/1025/30/30" alt=":3">
-                    <div class="name-time">
-                        <p>Whiskers</p>
-                        <p class="time">10:10 AM - 16/07/25</p>
-                    </div>
-                </div>
-                <p>Neat!</p>
             </div>
             <div class="message-box">
-                <input type="text" id='chatbox' placeholder="No we don't make cats into shakes i swear">
+                <input type="text" id='chatbox' placeholder=":3" maxlength="512">
                 <button onclick="sendMessage()"><i class="fa">&#xf1d9</i></button>
             </div>
         </div>
