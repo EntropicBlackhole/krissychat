@@ -273,14 +273,37 @@
         function gotoUserPage(user) {
             return console.log(user)
         }
+        function removeStringIndex(str, index, endingPoint = null) {
+            if (endingPoint == null) return str.substring(0, index - 1) + str.substring(index, str.length);
+            return str.substring(0, index - 1) + str.substring(endingPoint, str.length);
+        }
         function sendMessage() {
             let message = document.getElementById('chatbox').innerHTML;
             document.getElementById('chatbox').innerHTML = "";
             let pfp = 'https://picsum.photos/id/1027/200/200';
             let name = 'Whiskers';
-            let timeDate = new Date('hh:mm a - mm/dd/yy')
-            const messageList = document.getElementById("message-list");
+            let timeDate = removeStringIndex(removeStringIndex(new Date().toLocaleString(), 6, 7), 14, 16)
+            timeDate;
+            // let timeOnly = timeDate[1].split(' ')[0].split(':')
+            // let a = timeDate[1].split(' ')[1];
+            // let date = timeDate[0].split('/');
 
+            // let compiledTime = `${date[0]}/${date[1]}/${date[2].slice()}`;
+            const messageList = document.getElementById("message-list");
+            //4/19/2023, 7:19:53 PM
+            /*
+            <div class="message">
+                <div class="user-row">
+                    <img src="https://picsum.photos/id/1029/30/30" alt=":3">
+                        <div class="name-time">
+                            <p>Match</p>
+                            <p class="time">10:10 AM - 16/07/25</p>
+                        </div>
+                </div>
+                <p>How are you?</p>
+            </div>
+            */
+            console.log(message)
             let messageBox = document.createElement('div');
             let userRow = document.createElement("div");
             userRow.classList.add('user-row')
