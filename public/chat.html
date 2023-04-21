@@ -125,7 +125,7 @@
             position: -webkit-sticky;
             position: sticky;
             bottom: 0;
-            
+
         }
 
         .message-box input[type="text"] {
@@ -253,10 +253,12 @@
         .contact {
             margin-left: 10px;
         }
+
         .current-contact {
             margin-left: 10px;
             background-color: rgb(48, 48, 48);
         }
+
         @media screen and (max-height: 450px) {
             .sidenav {
                 padding-top: 15px;
@@ -268,6 +270,19 @@
         }
     </style>
     <script>
+        function main() {
+            if (document.getElementById("chatbox")) {
+                let chatBox = document.getElementById("chatbox");
+                chatBox.addEventListener("keydown", function (event) {
+                    console.log(event.keyCode)
+                    if (event.key === "Enter") {
+                        sendMessage()
+                    }
+                });
+            } else setTimeout(main, 15);
+            
+        }
+
         function openNav() {
             document.getElementById("mySidenav").style.width = "250px";
         }
@@ -344,6 +359,8 @@
                 messageList.appendChild(messageBox);
             }
         }
+
+
     </script>
 </head>
 
